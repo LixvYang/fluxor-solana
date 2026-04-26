@@ -4,8 +4,11 @@
   "description": "Fluxor - 共享经济阅读平台",
   "scripts": {
     "dev": "slidev --open",
+    "dev:en": "slidev slides-en.md --open",
     "build": "slidev build",
-    "export": "slidev export"
+    "build:en": "slidev build slides-en.md",
+    "export": "slidev export",
+    "export:en": "slidev export slides-en.md"
   },
   "keywords": ["slidev", "presentation", "solana", "web3"],
   "author": "",
