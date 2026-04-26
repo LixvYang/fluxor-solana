@@ -1,0 +1,57 @@
+.anchor
+.DS_Store
+target
+**/target
+**/*.rs.bk
+node_modules
+dist
+*.tsbuildinfo
+test-ledger
+.yarn
+.surfpool
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Build artifacts
+.anchor/
+**/package-lock.json
+**/yarn-lock
+**/pnpm-lock.yaml
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test coverage
+coverage
+
+# Temporary files
+*.tmp
+.cache
+
+# AI and dev tools
+.agents/
+.claude/
+.factory/
+.kiro/
+.windsurf/
+skills/
+skills-lock.json
+progress.md
+task_plan.md
+findings.md
+AGENTS.md
+
+# Temporary dirs
+Users/
+convert.js

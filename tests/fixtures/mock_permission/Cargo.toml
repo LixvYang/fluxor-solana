@@ -1,0 +1,23 @@
+[package]
+name = "mock_permission"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "mock_permission"
+
+[features]
+default = []
+no-entrypoint = []
+custom-heap = []
+custom-panic = []
+
+[dependencies]
+borsh = "1.6.1"
+solana-program = "3.0.0"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }

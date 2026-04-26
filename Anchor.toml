@@ -1,0 +1,21 @@
+[toolchain]
+package_manager = "pnpm"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.devnet]
+fluxor_solana = "DGABGfY3Jjp45DVAwzVPDBjdRVGF1LSYNmsrqjiNbX4H"
+
+[programs.localnet]
+fluxor_solana = "CMq4uBd2ztptM1QZ4rFc7RTwgUC8ez4LEth63H6L6RQg"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "cargo test"
+
+[hooks]
