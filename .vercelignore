@@ -1,0 +1,64 @@
+# Build artifacts
+target
+**/target
+dist
+**/dist
+
+# Dependencies
+node_modules
+**/node_modules
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+
+# Tests
+tests
+**/tests
+*.test.*
+*.spec.*
+
+# Documentation
+*.md
+!README.md
+
+# Development files
+.git
+.gitignore
+.prettierrc*
+.prettierignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Temporary files
+*.log
+*.tmp
+.cache
+
+# Programs (only deploy web app)
+programs
+apps/web
+
+# Scripts
+scripts
+
+# Root configs
+Anchor.toml
+Cargo.lock
+Cargo.toml
+tsconfig.json
+
+# AI & dev tools
+.agents
+.claude
+.factory
+.kiro
+.windsurf
+skills
+progress.md
+task_plan.md
+findings.md
+AGENTS.md
