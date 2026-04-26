@@ -1,0 +1,3041 @@
+{
+  "address": "DGABGfY3Jjp45DVAwzVPDBjdRVGF1LSYNmsrqjiNbX4H",
+  "metadata": {
+    "name": "fluxor_solana",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Fluxor on Solana paid Markdown article program"
+  },
+  "instructions": [
+    {
+      "name": "begin_content_update",
+      "discriminator": [
+        86,
+        67,
+        216,
+        202,
+        1,
+        211,
+        255,
+        15
+      ],
+      "accounts": [
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "author",
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "private_content",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "buy_article",
+      "discriminator": [
+        175,
+        51,
+        155,
+        152,
+        48,
+        209,
+        21,
+        202
+      ],
+      "accounts": [
+        {
+          "name": "global_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receipt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  99,
+                  101,
+                  105,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              },
+              {
+                "kind": "account",
+                "path": "buyer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim_author_revenue",
+      "discriminator": [
+        214,
+        102,
+        131,
+        113,
+        238,
+        175,
+        199,
+        1
+      ],
+      "accounts": [
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim_platform_fee",
+      "discriminator": [
+        156,
+        39,
+        208,
+        135,
+        76,
+        237,
+        61,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "global_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "global_config"
+          ]
+        },
+        {
+          "name": "platform_fee_receiver",
+          "writable": true
+        },
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim_reader_reward",
+      "discriminator": [
+        119,
+        143,
+        73,
+        118,
+        141,
+        244,
+        159,
+        240
+      ],
+      "accounts": [
+        {
+          "name": "reader",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receipt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  99,
+                  101,
+                  105,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              },
+              {
+                "kind": "account",
+                "path": "reader"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_article",
+      "discriminator": [
+        84,
+        149,
+        127,
+        123,
+        55,
+        157,
+        179,
+        126
+      ],
+      "accounts": [
+        {
+          "name": "global_config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "article_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_content",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "article_id",
+          "type": "u64"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "summary",
+          "type": "string"
+        },
+        {
+          "name": "price_lamports",
+          "type": "u64"
+        },
+        {
+          "name": "max_purchases",
+          "type": "u32"
+        },
+        {
+          "name": "permission",
+          "type": "pubkey"
+        },
+        {
+          "name": "content_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_content_permission",
+      "discriminator": [
+        200,
+        182,
+        115,
+        138,
+        220,
+        41,
+        43,
+        249
+      ],
+      "accounts": [
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_content",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "permission",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  101,
+                  114,
+                  109,
+                  105,
+                  115,
+                  115,
+                  105,
+                  111,
+                  110,
+                  58
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "private_content"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                136,
+                161,
+                10,
+                196,
+                33,
+                152,
+                1,
+                214,
+                246,
+                106,
+                29,
+                60,
+                6,
+                152,
+                192,
+                102,
+                169,
+                175,
+                212,
+                217,
+                180,
+                252,
+                231,
+                71,
+                151,
+                141,
+                209,
+                5,
+                168,
+                212,
+                103,
+                82
+              ]
+            }
+          }
+        },
+        {
+          "name": "permission_program",
+          "address": "ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "delegate_content",
+      "discriminator": [
+        182,
+        18,
+        242,
+        93,
+        87,
+        206,
+        237,
+        37
+      ],
+      "accounts": [
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_content",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "buffer",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  117,
+                  102,
+                  102,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "private_content"
+              }
+            ]
+          }
+        },
+        {
+          "name": "delegation_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  108,
+                  101,
+                  103,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "private_content"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                181,
+                183,
+                0,
+                225,
+                242,
+                87,
+                58,
+                192,
+                204,
+                6,
+                34,
+                1,
+                52,
+                74,
+                207,
+                151,
+                184,
+                53,
+                6,
+                235,
+                140,
+                229,
+                25,
+                152,
+                204,
+                98,
+                126,
+                24,
+                147,
+                128,
+                167,
+                62
+              ]
+            }
+          }
+        },
+        {
+          "name": "delegation_metadata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  108,
+                  101,
+                  103,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110,
+                  45,
+                  109,
+                  101,
+                  116,
+                  97,
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "private_content"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                181,
+                183,
+                0,
+                225,
+                242,
+                87,
+                58,
+                192,
+                204,
+                6,
+                34,
+                1,
+                52,
+                74,
+                207,
+                151,
+                184,
+                53,
+                6,
+                235,
+                140,
+                229,
+                25,
+                152,
+                204,
+                98,
+                126,
+                24,
+                147,
+                128,
+                167,
+                62
+              ]
+            }
+          }
+        },
+        {
+          "name": "owner_program",
+          "address": "DGABGfY3Jjp45DVAwzVPDBjdRVGF1LSYNmsrqjiNbX4H"
+        },
+        {
+          "name": "delegation_program",
+          "address": "DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "validator",
+          "type": {
+            "option": "pubkey"
+          }
+        }
+      ]
+    },
+    {
+      "name": "finalize_article_publish",
+      "discriminator": [
+        155,
+        93,
+        154,
+        57,
+        213,
+        5,
+        233,
+        223
+      ],
+      "accounts": [
+        {
+          "name": "author",
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "content_len",
+          "type": "u32"
+        },
+        {
+          "name": "content_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "grant_access",
+      "discriminator": [
+        66,
+        88,
+        87,
+        113,
+        39,
+        22,
+        27,
+        165
+      ],
+      "accounts": [
+        {
+          "name": "buyer",
+          "signer": true
+        },
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_content",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receipt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  99,
+                  101,
+                  105,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              },
+              {
+                "kind": "account",
+                "path": "buyer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "permission",
+          "writable": true
+        },
+        {
+          "name": "permission_program",
+          "address": "ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "grant_per_access",
+      "discriminator": [
+        116,
+        232,
+        16,
+        63,
+        27,
+        174,
+        194,
+        239
+      ],
+      "accounts": [
+        {
+          "name": "buyer",
+          "signer": true
+        },
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "private_content",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receipt",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  99,
+                  101,
+                  105,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              },
+              {
+                "kind": "account",
+                "path": "buyer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "permission",
+          "writable": true
+        },
+        {
+          "name": "permission_program",
+          "address": "ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_config",
+      "discriminator": [
+        208,
+        127,
+        21,
+        1,
+        194,
+        190,
+        196,
+        70
+      ],
+      "accounts": [
+        {
+          "name": "global_config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "platform_fee_receiver",
+          "type": "pubkey"
+        },
+        {
+          "name": "platform_fee_bps",
+          "type": "u16"
+        },
+        {
+          "name": "reward_bps",
+          "type": "u16"
+        },
+        {
+          "name": "author_bps",
+          "type": "u16"
+        },
+        {
+          "name": "min_price_lamports",
+          "type": "u64"
+        },
+        {
+          "name": "max_purchases_limit",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "mark_access_granted",
+      "discriminator": [
+        217,
+        187,
+        106,
+        245,
+        37,
+        120,
+        236,
+        167
+      ],
+      "accounts": [
+        {
+          "name": "buyer",
+          "signer": true
+        },
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receipt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  99,
+                  101,
+                  105,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              },
+              {
+                "kind": "account",
+                "path": "buyer"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "publish_content",
+      "discriminator": [
+        41,
+        221,
+        254,
+        187,
+        108,
+        89,
+        149,
+        156
+      ],
+      "accounts": [
+        {
+          "name": "article",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "author",
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "private_content",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "content_len",
+          "type": "u32"
+        },
+        {
+          "name": "content_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "publish_private_content",
+      "discriminator": [
+        92,
+        246,
+        126,
+        49,
+        38,
+        163,
+        236,
+        98
+      ],
+      "accounts": [
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "author",
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "private_content",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "content_len",
+          "type": "u32"
+        },
+        {
+          "name": "content_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "reserve_content_capacity",
+      "discriminator": [
+        132,
+        126,
+        219,
+        220,
+        150,
+        167,
+        180,
+        120
+      ],
+      "accounts": [
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "private_content",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "capacity",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "update_config",
+      "discriminator": [
+        29,
+        158,
+        252,
+        191,
+        10,
+        83,
+        219,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "global_config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  95,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "global_config"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "new_admin",
+          "type": "pubkey"
+        },
+        {
+          "name": "platform_fee_receiver",
+          "type": "pubkey"
+        },
+        {
+          "name": "platform_fee_bps",
+          "type": "u16"
+        },
+        {
+          "name": "reward_bps",
+          "type": "u16"
+        },
+        {
+          "name": "author_bps",
+          "type": "u16"
+        },
+        {
+          "name": "min_price_lamports",
+          "type": "u64"
+        },
+        {
+          "name": "max_purchases_limit",
+          "type": "u32"
+        },
+        {
+          "name": "paused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "write_content_chunk",
+      "discriminator": [
+        244,
+        214,
+        244,
+        78,
+        110,
+        220,
+        87,
+        124
+      ],
+      "accounts": [
+        {
+          "name": "article",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  116,
+                  105,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article.id",
+                "account": "Article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "article"
+          ]
+        },
+        {
+          "name": "private_content",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  116,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "article"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "offset",
+          "type": "u32"
+        },
+        {
+          "name": "chunk",
+          "type": "bytes"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Article",
+      "discriminator": [
+        190,
+        223,
+        81,
+        111,
+        130,
+        251,
+        187,
+        202
+      ]
+    },
+    {
+      "name": "ArticlePrivateContent",
+      "discriminator": [
+        71,
+        86,
+        198,
+        198,
+        170,
+        6,
+        74,
+        63
+      ]
+    },
+    {
+      "name": "ArticleVault",
+      "discriminator": [
+        5,
+        253,
+        198,
+        136,
+        82,
+        181,
+        155,
+        101
+      ]
+    },
+    {
+      "name": "GlobalConfig",
+      "discriminator": [
+        149,
+        8,
+        156,
+        202,
+        160,
+        252,
+        176,
+        217
+      ]
+    },
+    {
+      "name": "PurchaseReceipt",
+      "discriminator": [
+        79,
+        127,
+        222,
+        137,
+        154,
+        131,
+        150,
+        134
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "ArticleAccessGranted",
+      "discriminator": [
+        157,
+        177,
+        237,
+        74,
+        221,
+        165,
+        132,
+        252
+      ]
+    },
+    {
+      "name": "ArticleCreated",
+      "discriminator": [
+        39,
+        83,
+        108,
+        123,
+        33,
+        61,
+        208,
+        151
+      ]
+    },
+    {
+      "name": "ArticlePublishFinalized",
+      "discriminator": [
+        167,
+        18,
+        111,
+        254,
+        10,
+        168,
+        243,
+        248
+      ]
+    },
+    {
+      "name": "ArticlePurchased",
+      "discriminator": [
+        186,
+        160,
+        198,
+        156,
+        146,
+        73,
+        220,
+        13
+      ]
+    },
+    {
+      "name": "AuthorRevenueClaimed",
+      "discriminator": [
+        34,
+        123,
+        67,
+        148,
+        181,
+        249,
+        41,
+        52
+      ]
+    },
+    {
+      "name": "ConfigInitialized",
+      "discriminator": [
+        181,
+        49,
+        200,
+        156,
+        19,
+        167,
+        178,
+        91
+      ]
+    },
+    {
+      "name": "ConfigUpdated",
+      "discriminator": [
+        40,
+        241,
+        230,
+        122,
+        11,
+        19,
+        198,
+        194
+      ]
+    },
+    {
+      "name": "ContentChunkWritten",
+      "discriminator": [
+        145,
+        108,
+        228,
+        84,
+        47,
+        30,
+        103,
+        220
+      ]
+    },
+    {
+      "name": "ContentPermissionCreated",
+      "discriminator": [
+        28,
+        199,
+        254,
+        105,
+        107,
+        14,
+        158,
+        173
+      ]
+    },
+    {
+      "name": "ContentPublished",
+      "discriminator": [
+        0,
+        209,
+        55,
+        24,
+        21,
+        127,
+        152,
+        156
+      ]
+    },
+    {
+      "name": "ContentUpdateStarted",
+      "discriminator": [
+        46,
+        233,
+        3,
+        11,
+        99,
+        45,
+        155,
+        104
+      ]
+    },
+    {
+      "name": "PlatformFeeClaimed",
+      "discriminator": [
+        11,
+        13,
+        236,
+        247,
+        101,
+        255,
+        94,
+        243
+      ]
+    },
+    {
+      "name": "PrivateContentDelegated",
+      "discriminator": [
+        89,
+        184,
+        50,
+        105,
+        76,
+        126,
+        194,
+        43
+      ]
+    },
+    {
+      "name": "ReaderRewardClaimed",
+      "discriminator": [
+        97,
+        15,
+        210,
+        172,
+        190,
+        227,
+        212,
+        112
+      ]
+    },
+    {
+      "name": "ReceiptAccessMarked",
+      "discriminator": [
+        168,
+        139,
+        132,
+        219,
+        19,
+        180,
+        41,
+        59
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidFeeSplit",
+      "msg": "Fee bps must sum to 10000"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidMaxPurchasesLimit",
+      "msg": "Maximum purchases limit must be greater than zero"
+    },
+    {
+      "code": 6002,
+      "name": "PlatformPaused",
+      "msg": "Platform is paused"
+    },
+    {
+      "code": 6003,
+      "name": "PriceBelowMinimum",
+      "msg": "Article price is below the configured minimum"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidMaxPurchases",
+      "msg": "Article maximum purchases is invalid"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidArticleId",
+      "msg": "Article id must equal the current global article count"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidTitle",
+      "msg": "Title is empty or too long"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidSummary",
+      "msg": "Summary is empty or too long"
+    },
+    {
+      "code": 6008,
+      "name": "ArticleNotActive",
+      "msg": "Article is not active"
+    },
+    {
+      "code": 6009,
+      "name": "ArticleDisabled",
+      "msg": "Article is disabled"
+    },
+    {
+      "code": 6010,
+      "name": "AuthorCannotBuy",
+      "msg": "Author cannot buy their own article"
+    },
+    {
+      "code": 6011,
+      "name": "SoldOut",
+      "msg": "Article is sold out"
+    },
+    {
+      "code": 6012,
+      "name": "ArithmeticOverflow",
+      "msg": "Arithmetic overflow"
+    },
+    {
+      "code": 6013,
+      "name": "InvalidAccountRelationship",
+      "msg": "Invalid account relationship"
+    },
+    {
+      "code": 6014,
+      "name": "ContentChunkTooLarge",
+      "msg": "Content chunk is too large"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidContentOffset",
+      "msg": "Content offset is invalid"
+    },
+    {
+      "code": 6016,
+      "name": "ContentTooLarge",
+      "msg": "Content length exceeds the maximum"
+    },
+    {
+      "code": 6017,
+      "name": "ContentAlreadyPublished",
+      "msg": "Content is already published; begin an update first"
+    },
+    {
+      "code": 6018,
+      "name": "ContentNotPublished",
+      "msg": "Content is not published"
+    },
+    {
+      "code": 6019,
+      "name": "ContentHashMismatch",
+      "msg": "Content hash mismatch"
+    },
+    {
+      "code": 6020,
+      "name": "AccessAlreadyGranted",
+      "msg": "Receipt access has already been granted"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidPermissionAccount",
+      "msg": "Invalid MagicBlock permission account"
+    },
+    {
+      "code": 6022,
+      "name": "NothingToClaim",
+      "msg": "No rewards are currently claimable"
+    },
+    {
+      "code": 6023,
+      "name": "InsufficientVaultBalance",
+      "msg": "Vault does not have enough claimable lamports"
+    },
+    {
+      "code": 6024,
+      "name": "InvalidPlatformFeeReceiver",
+      "msg": "Invalid platform fee receiver"
+    },
+    {
+      "code": 6025,
+      "name": "ContentAlreadyDelegated",
+      "msg": "Account is already delegated to MagicBlock"
+    },
+    {
+      "code": 6026,
+      "name": "Unauthorized",
+      "msg": "Unauthorized signer"
+    }
+  ],
+  "types": [
+    {
+      "name": "Article",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "summary",
+            "type": "string"
+          },
+          {
+            "name": "price_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "max_purchases",
+            "type": "u32"
+          },
+          {
+            "name": "purchase_count",
+            "type": "u32"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "private_content",
+            "type": "pubkey"
+          },
+          {
+            "name": "permission",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_paid",
+            "type": "u64"
+          },
+          {
+            "name": "acc_reward_per_reader",
+            "type": "u128"
+          },
+          {
+            "name": "author_pending",
+            "type": "u64"
+          },
+          {
+            "name": "author_claimed",
+            "type": "u64"
+          },
+          {
+            "name": "platform_pending",
+            "type": "u64"
+          },
+          {
+            "name": "platform_claimed",
+            "type": "u64"
+          },
+          {
+            "name": "platform_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "reward_bps",
+            "type": "u16"
+          },
+          {
+            "name": "author_bps",
+            "type": "u16"
+          },
+          {
+            "name": "content_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "content_version",
+            "type": "u32"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "updated_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ArticleAccessGranted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "buyer",
+            "type": "pubkey"
+          },
+          {
+            "name": "permission",
+            "type": "pubkey"
+          },
+          {
+            "name": "granted_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ArticleCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "article_id",
+            "type": "u64"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "price_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "max_purchases",
+            "type": "u32"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "private_content",
+            "type": "pubkey"
+          },
+          {
+            "name": "permission",
+            "type": "pubkey"
+          },
+          {
+            "name": "content_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ArticlePrivateContent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "permission",
+            "type": "pubkey"
+          },
+          {
+            "name": "content_len",
+            "type": "u32"
+          },
+          {
+            "name": "content_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "content_version",
+            "type": "u32"
+          },
+          {
+            "name": "content",
+            "type": "bytes"
+          },
+          {
+            "name": "published",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ArticlePublishFinalized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "content_len",
+            "type": "u32"
+          },
+          {
+            "name": "content_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "content_version",
+            "type": "u32"
+          },
+          {
+            "name": "finalized_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ArticlePurchased",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "article_id",
+            "type": "u64"
+          },
+          {
+            "name": "buyer",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "purchase_index",
+            "type": "u32"
+          },
+          {
+            "name": "purchased_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ArticleVault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AuthorRevenueClaimed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "claimed_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "reward_bps",
+            "type": "u16"
+          },
+          {
+            "name": "author_bps",
+            "type": "u16"
+          },
+          {
+            "name": "min_price_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "max_purchases_limit",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "reward_bps",
+            "type": "u16"
+          },
+          {
+            "name": "author_bps",
+            "type": "u16"
+          },
+          {
+            "name": "min_price_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "max_purchases_limit",
+            "type": "u32"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ContentChunkWritten",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "offset",
+            "type": "u32"
+          },
+          {
+            "name": "len",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ContentPermissionCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "private_content",
+            "type": "pubkey"
+          },
+          {
+            "name": "permission",
+            "type": "pubkey"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ContentPublished",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "content_len",
+            "type": "u32"
+          },
+          {
+            "name": "content_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "content_version",
+            "type": "u32"
+          },
+          {
+            "name": "published_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ContentUpdateStarted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "content_version",
+            "type": "u32"
+          },
+          {
+            "name": "updated_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GlobalConfig",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "reward_bps",
+            "type": "u16"
+          },
+          {
+            "name": "author_bps",
+            "type": "u16"
+          },
+          {
+            "name": "min_price_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "max_purchases_limit",
+            "type": "u32"
+          },
+          {
+            "name": "article_count",
+            "type": "u64"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlatformFeeClaimed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "claimed_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PrivateContentDelegated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "private_content",
+            "type": "pubkey"
+          },
+          {
+            "name": "author",
+            "type": "pubkey"
+          },
+          {
+            "name": "validator",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "commit_frequency_ms",
+            "type": "u32"
+          },
+          {
+            "name": "delegated_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PurchaseReceipt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "reader",
+            "type": "pubkey"
+          },
+          {
+            "name": "purchase_index",
+            "type": "u32"
+          },
+          {
+            "name": "paid_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "reward_debt",
+            "type": "u128"
+          },
+          {
+            "name": "claimed_rewards",
+            "type": "u64"
+          },
+          {
+            "name": "access_granted",
+            "type": "bool"
+          },
+          {
+            "name": "purchased_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ReaderRewardClaimed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "reader",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "claimed_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ReceiptAccessMarked",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "article",
+            "type": "pubkey"
+          },
+          {
+            "name": "buyer",
+            "type": "pubkey"
+          },
+          {
+            "name": "receipt",
+            "type": "pubkey"
+          },
+          {
+            "name": "marked_at",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "MAGICBLOCK_DELEGATION_PROGRAM_ID",
+      "type": "pubkey",
+      "value": "DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh"
+    },
+    {
+      "name": "MAGICBLOCK_PERMISSION_PROGRAM_ID",
+      "type": "pubkey",
+      "value": "ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1"
+    },
+    {
+      "name": "PROGRAM_VERSION",
+      "type": "u8",
+      "value": "1"
+    }
+  ]
+}
