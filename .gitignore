@@ -39,6 +39,11 @@ coverage
 *.tmp
 .cache
 
+# Slidev exports
+**/*-export.pdf
+slides-export/
+slides-dist/
+
 # AI and dev tools
 .agents/
 .claude/

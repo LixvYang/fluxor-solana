@@ -10,12 +10,20 @@
     "export": "slidev export",
     "export:en": "slidev export slides-en.md"
   },
-  "keywords": ["slidev", "presentation", "solana", "web3"],
+  "keywords": [
+    "slidev",
+    "presentation",
+    "solana",
+    "web3"
+  ],
   "author": "",
   "license": "MIT",
   "type": "module",
   "dependencies": {
     "@slidev/cli": "^52.14.2",
     "@slidev/theme-default": "^0.25.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.59.1"
   }
 }
